@@ -2,7 +2,7 @@ import { Product as ProductModel } from '@/domain/models';
 import { Schema, Document, model, Model, models } from 'mongoose';
 
 
-interface IProduct extends Document, Omit<ProductModel, '_id'> { }
+export interface IProduct extends Document, Omit<ProductModel, '_id'> { }
 
 const productSchema = new Schema<IProduct>({
   description: { type: String, required: true, default: '' },

@@ -1,5 +1,6 @@
 import { connections, connect, disconnect } from 'mongoose';
 import { green, yellow, blue } from 'colors';
+import { config } from '@/config/config';
 
 /**
  * 0 = disconnected
@@ -31,9 +32,9 @@ export const db = {
       await disconnect();
     }
 
-    await connect(process.env.MONGO_URL || '');
+    await connect(config.MONGO_URL || '');
     dbConnections.isConnected = 1;
-    console.log(`${green('Connected to MongoDB:')}`, `${yellow(process.env.MONGO_URL as string)}`);
+    console.log(`${green('Connected to MongoDB:')}`, `${yellow(config.MONGO_URL as string)}`);
   },
 
   disconnect: async () => {
