@@ -4,6 +4,7 @@ import { IProduct } from "@/infrastructure/database/schemas";
 import { SHOP_CONSTANTS } from '@/infrastructure/database/constants';
 import { ProductsRepository } from '@/domain/services/products/ProductsRepository.interface';
 import { config } from '@/config/config';
+import { ErrorWidthCode } from '@/domain/models';
 // import { MongoDocument } from "@/infrastructure/database/common";
 
 // type ProductDocument = MongoDocument<IProduct>
@@ -33,13 +34,13 @@ export const productsRepository = (productModel: Model<IProduct>): ProductsRepos
   getProductBySlug: async (slug?: string) => {
     await db.connect();
 
-    if(!slug) return null;
+    if (!slug) throw new ErrorWidthCode(400, 'Slug must be provided');
 
     const product = await productModel.findOne({ slug }).lean();
 
     await db.disconnect();
 
-    if (!product) return null;
+    if (!product) throw new ErrorWidthCode(400, 'No produc found');
 
     product.images = product.images.map(img => setImageUrl(img));
 
