@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { ErrorWidthCode } from "@/domain/models";
-import { productsServerService } from "@/domain/services/products/products.service";
+import { productsServerService } from "@/domain/services";
 import { Product } from "@/infrastructure/database/schemas";
-import { productsRepository } from "@/infrastructure/repositories/productsServer.Repository";
+import { productsRepository } from "@/infrastructure/repositories";
 import { throw500Error } from "@/infrastructure/controllers/utils";
 
 const productsService = productsServerService(productsRepository(Product));

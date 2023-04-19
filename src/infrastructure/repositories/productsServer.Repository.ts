@@ -2,7 +2,7 @@ import { Model } from 'mongoose';
 import { db } from "@/infrastructure/database";
 import { IProduct } from "@/infrastructure/database/schemas";
 import { SHOP_CONSTANTS } from '@/infrastructure/database/constants';
-import { ProductsRepository } from '@/domain/services/products/ProductsRepository.interface';
+import { ProductsRepository } from '@/domain/services';
 import { config } from '@/config/config';
 import { ErrorWidthCode } from '@/domain/models';
 // import { MongoDocument } from "@/infrastructure/database/common";

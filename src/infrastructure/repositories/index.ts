@@ -1,0 +1,1 @@
+export { productsRepository } from './productsServer.Repository';
