@@ -19,3 +19,5 @@ export interface Product {
 
 export type Size = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 export type Type = 'shirts' | 'pants' | 'hoodies' | 'hats';
+
+export type BaseProduct = Omit<Product, '_id' | 'createdAt' | 'updatedAt'>

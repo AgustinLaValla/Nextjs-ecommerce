@@ -6,7 +6,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     'GET': () => getProductBySlug(req, res),
   };
 
-  const response = responses[req.method as keyof typeof responses || 'default'];
+  const response = responses[req.method as keyof typeof responses];
 
   if (!response) return res.status(400).json({ message: 'No route found' });
 

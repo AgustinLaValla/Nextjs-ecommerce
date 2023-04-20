@@ -1,4 +1,4 @@
-import { Product } from "@/domain/models";
+import { BaseProduct, Product } from "@/domain/models";
 import { ProductsRepository } from "@/domain/services";
 
 export const productsServerService = (productsRepository: ProductsRepository) => ({
@@ -7,7 +7,8 @@ export const productsServerService = (productsRepository: ProductsRepository) =>
   getAllProductSlugs: () => productsRepository.getAllProductSlugs(),
   getProductsByTerm: (term: string) => productsRepository.getProductsByTerm(term),
   getAllProducts: () => productsRepository.getAllProducts(),
-  createManyProducts: (products: Omit<Product, 'createdAt' | 'updatedAt' | '_id'>[]) => productsRepository.createManyProducts(products),
+  createProduct: (product: BaseProduct) => productsRepository.createProduct(product),
+  createManyProducts: (products: BaseProduct[]) => productsRepository.createManyProducts(products),
   deleteManyProducts: () => productsRepository.deleteManyProducts()
 });
 

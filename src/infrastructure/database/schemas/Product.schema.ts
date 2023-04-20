@@ -5,10 +5,12 @@ import { Schema, Document, model, Model, models } from 'mongoose';
 export interface IProduct extends Document, Omit<ProductModel, '_id'> { }
 
 const productSchema = new Schema<IProduct>({
-  description: { type: String, required: true, default: '' },
   images: [{ type: String }],
   inStock: { type: Number, required: true, default: 0 },
+  description: { type: String, required: true },
   price: { type: Number, required: true, default: 0 },
+  slug: { type: String, required: true, unique: true },
+  title: { type: String, required: true },
   sizes: [{
     type: String,
     enum: {
@@ -16,9 +18,7 @@ const productSchema = new Schema<IProduct>({
       message: '{VALUE} is not a valid size'
     }
   }],
-  slug: { type: String, required: true, unique: true },
   tags: [{ type: String }],
-  title: { type: String, required: true, default: '' },
   type: {
     type: String,
     enum: {

@@ -4,7 +4,7 @@ import { IProduct } from "@/infrastructure/database/schemas";
 import { SHOP_CONSTANTS } from '@/infrastructure/database/constants';
 import { ProductsRepository } from '@/domain/services';
 import { config } from '@/config/config';
-import { ErrorWidthCode, Product } from '@/domain/models';
+import { BaseProduct, ErrorWidthCode, Product } from '@/domain/models';
 // import { MongoDocument } from "@/infrastructure/database/common";
 
 // type ProductDocument = MongoDocument<IProduct>
@@ -23,7 +23,7 @@ export const productsRepository = (productModel: Model<IProduct>): ProductsRepos
     await db.connect();
     const products = await productModel
       .find(condition)
-      .select('title images price inStock slug -_id')
+      // .select('title images price inStock slug -_id')
       .lean()
 
     await db.disconnect();
@@ -86,7 +86,18 @@ export const productsRepository = (productModel: Model<IProduct>): ProductsRepos
     return JSON.parse(JSON.stringify(updatedProducts))
   },
 
-  createManyProducts: async (products: Omit<Product, 'createdAt' | 'updatedAt' | '_id'>[]) => {
+  createProduct: async (product: BaseProduct) => {
+    await db.connect();
+
+    const newProduct = new productModel(product);
+    await newProduct.save();
+
+    await db.disconnect();
+
+    return newProduct; 
+  },
+
+  createManyProducts: async (products: BaseProduct[]) => {
     await db.connect();
     const insertedProducts = await productModel.insertMany(products);
     await db.disconnect();
