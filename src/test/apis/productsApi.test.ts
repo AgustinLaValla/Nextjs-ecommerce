@@ -68,7 +68,7 @@ describe('Procuts Api', () => {
       handler,
       test: async ({ fetch }) => {
         const resp = await fetch({ method: 'POST', body: JSON.stringify({ product }) });
-        // expect(resp.json()).resolves.toStrictEqual(body.product)
+        expect(resp.json()).resolves.toStrictEqual(product)
       }
     })
   })
