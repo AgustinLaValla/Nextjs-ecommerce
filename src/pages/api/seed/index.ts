@@ -18,5 +18,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   await service.deleteManyProducts();
   await service.createManyProducts(products);
 
-  return res.status(201).json({ message: 'DB Populated' })
+  return res.status(201).json({ message: 'DB Populated' });
 }

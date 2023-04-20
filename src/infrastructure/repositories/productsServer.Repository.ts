@@ -9,7 +9,7 @@ import { BaseProduct, ErrorWidthCode, Product } from '@/domain/models';
 
 // type ProductDocument = MongoDocument<IProduct>
 
-const setImageUrl = (img: string) => img.includes('http') ? img : `${config.hostName}/products/${img}`;
+export const setImageUrl = (img: string) => img.includes('http') ? img : `${config.hostName}/products/${img}`;
 
 export const productsRepository = (productModel: Model<IProduct>): ProductsRepository => ({
   getProductsByGender: async (gender = 'all') => {

@@ -14,6 +14,9 @@ describe('Products Service', () => {
       getAllProductSlugs: jest.fn(),
       getProductsByTerm: jest.fn(),
       getAllProducts: jest.fn(),
+      createManyProducts: jest.fn(),
+      createProduct: jest.fn(),
+      deleteManyProducts: jest.fn(),
     }
 
     service = productsServerService(repository);

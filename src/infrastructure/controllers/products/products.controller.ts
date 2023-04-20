@@ -4,6 +4,7 @@ import { productsServerService } from "@/domain/services";
 import { Product } from "@/infrastructure/database/schemas";
 import { productsRepository } from "@/infrastructure/repositories";
 import { throw500Error } from "@/infrastructure/controllers/utils";
+import { parseHttpBody } from "@/infrastructure/utils/utils";
 
 const productsService = productsServerService(productsRepository(Product));
 
@@ -31,12 +32,12 @@ export const getProductBySlug = async (req: NextApiRequest, res: NextApiResponse
 };
 
 export const createProduct = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { product } = req.body as { product: BaseProduct };
+  let body = parseHttpBody(req.body);
+  const { product } = body as { product: BaseProduct };
   try {
     const newProduct = await productsService.createProduct(product);
     return res.status(201).json(newProduct);
   } catch (error) {
-    console.log(error);
     if (error instanceof ErrorWidthCode)
       return res.status(error.code).json(error.message);
 
