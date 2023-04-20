@@ -1,5 +1,3 @@
-import { Types } from 'mongoose';
-
 interface SeedProduct {
   description: string;
   images: string[];
@@ -8,21 +6,21 @@ interface SeedProduct {
   sizes: ValidSizes[];
   slug: string;
   tags: string[];
-  title: string;
+  title: string; 
   type: ValidTypes;
   gender: 'men' | 'women' | 'kid' | 'unisex',
-  _id: any;
 }
 
 type ValidSizes = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 type ValidTypes = 'shirts' | 'pants' | 'hoodies' | 'hats';
 
 
+
 interface SeedData {
   products: SeedProduct[];
 }
 
-export const mockData: SeedData = {
+export const seedData: SeedData = {
   products: [
     {
       description: "Introducing the Tesla Chill Collection. The Men’s Chill Crew Neck Sweatshirt has a premium, heavyweight exterior and soft fleece interior for comfort in any season. The sweatshirt features a subtle thermoplastic polyurethane T logo on the chest and a Tesla wordmark below the back collar. Made from 60% cotton and 40% recycled polyester.",
@@ -38,7 +36,6 @@ export const mockData: SeedData = {
       tags: ['sweatshirt'],
       title: "Men’s Chill Crew Neck Sweatshirt",
       gender: 'men',
-      _id: new Types.ObjectId().toString()
     },
     {
       description: "The Men's Quilted Shirt Jacket features a uniquely fit, quilted design for warmth and mobility in cold weather seasons. With an overall street-smart aesthetic, the jacket features subtle silicone injected Tesla logos below the back collar and on the right sleeve, as well as custom matte metal zipper pulls. Made from 87% nylon and 13% polyurethane.",
@@ -54,7 +51,6 @@ export const mockData: SeedData = {
       tags: ['jacket'],
       title: "Men's Quilted Shirt Jacket",
       gender: 'men',
-      _id: new Types.ObjectId().toString()
     },
 
     {
@@ -71,7 +67,6 @@ export const mockData: SeedData = {
       tags: ['shirt'],
       title: "Men's Raven Lightweight Zip Up Bomber Jacket",
       gender: 'men',
-      _id: new Types.ObjectId().toString()
     },
   ]
 }

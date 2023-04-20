@@ -4,7 +4,7 @@ import { IProduct } from "@/infrastructure/database/schemas";
 import { SHOP_CONSTANTS } from '@/infrastructure/database/constants';
 import { ProductsRepository } from '@/domain/services';
 import { config } from '@/config/config';
-import { ErrorWidthCode } from '@/domain/models';
+import { ErrorWidthCode, Product } from '@/domain/models';
 // import { MongoDocument } from "@/infrastructure/database/common";
 
 // type ProductDocument = MongoDocument<IProduct>
@@ -84,6 +84,18 @@ export const productsRepository = (productModel: Model<IProduct>): ProductsRepos
     }));
 
     return JSON.parse(JSON.stringify(updatedProducts))
+  },
 
+  createManyProducts: async (products: Omit<Product, 'createdAt' | 'updatedAt' | '_id'>[]) => {
+    await db.connect();
+    const insertedProducts = await productModel.insertMany(products);
+    await db.disconnect();
+    return insertedProducts;
+  },
+
+  deleteManyProducts: async () => {
+    await db.connect();
+    await productModel.deleteMany();
+    await db.connect();
   }
 });
