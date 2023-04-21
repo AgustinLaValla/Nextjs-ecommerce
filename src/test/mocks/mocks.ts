@@ -1,5 +1,13 @@
 import { Types } from 'mongoose';
 
+interface MockUser {
+  _id: string;
+  name: string;
+  email: string;
+  role: string;
+  createdAt: string;
+  updatedAt: string;
+}
 interface MockProduct {
   description: string;
   images: string[];
@@ -23,6 +31,7 @@ type ValidTypes = 'shirts' | 'pants' | 'hoodies' | 'hats';
 
 interface MockData {
   products: MockProduct[];
+  users: MockUser[];
 }
 
 export const mockData: MockData = {
@@ -85,5 +94,16 @@ export const mockData: MockData = {
       "createdAt": "2023-04-20T14:20:12.702Z",
       "updatedAt": "2023-04-20T14:20:12.702Z"
     },
+  ],
+
+  users: [
+    {
+      _id: "6442b16e82baa13e52fc5fb3",
+      name: "Test",
+      email: "test@test.com",
+      role: "client",
+      createdAt: "2023-04-20T14:20:12.702Z",
+      updatedAt: "2023-04-20T14:20:12.702Z"
+    }
   ]
 }
