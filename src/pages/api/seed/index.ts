@@ -3,7 +3,6 @@ import { productsServerService } from "@/domain/services";
 import { Product } from "@/infrastructure/database/schemas";
 import { productsRepository } from "@/infrastructure/repositories";
 import { seedData } from "./seedData";
-import { db } from "@/infrastructure/database";
 
 const service = productsServerService(productsRepository(Product));
 

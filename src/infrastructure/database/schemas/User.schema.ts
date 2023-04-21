@@ -1,7 +1,7 @@
 import { User as UserModel } from '@/domain/models';
 import { Schema, Document, models, model, Model } from 'mongoose';
 
-interface IUser extends Document, Omit<UserModel, '_id'> { }
+export interface IUser extends Document, Omit<UserModel, '_id'> { }
 
 const userSchema = new Schema<IUser>({
   name: { type: String, required: true },
