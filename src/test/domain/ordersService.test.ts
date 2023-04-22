@@ -1,5 +1,5 @@
 import { OrdersRepository, ordersServeService } from "@/domain/services";
-import { baseOrderMock, mockData } from "../mocks/mocks";
+import { baseOrderMock, mockData, mockUser } from "../mocks/mocks";
 
 describe('Order Service', () => {
 
@@ -22,8 +22,8 @@ describe('Order Service', () => {
 
     (repository.createOrder as jest.Mock).mockResolvedValue(mockData.orders[0]);
 
-    const order = await service.createOrder(baseOrderMock);
-    expect(repository.createOrder).toHaveBeenCalledWith(baseOrderMock);
+    const order = await service.createOrder(baseOrderMock, mockUser._id);
+    expect(repository.createOrder).toHaveBeenCalledWith(baseOrderMock, mockUser._id);
     expect(order).toEqual(mockData.orders[0]);
 
   });

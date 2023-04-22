@@ -1,7 +1,7 @@
 import { Schema, Document, models, model, Model } from 'mongoose';
 import { Order as OrderModel } from '@/domain/models';
 
-interface IOrder extends Document, Omit<OrderModel, '_id'> { }
+export interface IOrder extends Document, Omit<OrderModel, '_id'> { }
 
 const orderSchema = new Schema<OrderModel>({
   user: { type: Schema.Types.ObjectId, ref: 'User', required: true },

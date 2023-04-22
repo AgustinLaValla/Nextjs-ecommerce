@@ -82,7 +82,7 @@ interface MockData {
   orders: MockOrder[];
 }
 
-const mockUser = {
+export const mockUser = {
   _id: "6442b16e82baa13e52fc5fb3",
   name: "Test",
   email: "test@test.com",

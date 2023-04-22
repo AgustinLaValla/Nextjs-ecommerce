@@ -2,6 +2,6 @@ import { Order } from "@/domain/models";
 import { OrdersRepository } from "@/domain/services";
 
 export const ordersServeService = (ordersRepository: OrdersRepository) => ({
-  createOrder: async (order: Order) => ordersRepository.createOrder(order),
+  createOrder: async (order: Order, userId: string) => ordersRepository.createOrder(order, userId),
   getOrders: async () => ordersRepository.getOrders()
 });

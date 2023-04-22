@@ -4,7 +4,7 @@ import productsApi from '@/pages/api/products';
 import productApi from '@/pages/api/products/[slug]';
 import { resetDB } from '../utils/utils';
 import { mockData } from '../mocks/mocks';
-import { setImageUrl } from '@/infrastructure/repositories/productsServer.Repository';
+import { setImageUrl } from '@/infrastructure/repositories/products.repository';
 
 
 const handler: typeof productsApi = productsApi;

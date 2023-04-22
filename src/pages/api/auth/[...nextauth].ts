@@ -30,7 +30,7 @@ export default NextAuth({
       token.accessToken = account.access_token;
 
       if (account?.type === 'oauth') {
-        await service.register(user.email || '', user.name || '')
+        token.user = await service.register(user.email || '', user.name || '')
       }
 
       return token;

@@ -1,4 +1,4 @@
-import { getProductsByGender, createProduct } from "@/infrastructure/controllers/products/products.controller";
+import { getProductsByGender, createProduct } from "@/infrastructure/controllers";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {

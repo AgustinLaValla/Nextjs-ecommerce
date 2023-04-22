@@ -1,7 +1,7 @@
 import { Order } from "@/domain/models";
 
 export interface OrdersRepository {
-  createOrder: (order: Order) => Promise<Order>
+  createOrder: (order: Order, userId: string) => Promise<Order>
   getOrders: () => Promise<Order[]>
 }
 
