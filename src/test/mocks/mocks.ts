@@ -120,6 +120,44 @@ export const baseOrderMock: Omit<MockOrder, '_id' | 'createdAt' | 'updatedAt'> =
     slug: 'remera_herencia',
     title: 'Remere Herencia Entallada'
   }],
+};
+
+const orderMock = {
+  "total": Math.round((75 * (0.15 + 1)) * 100) / 100,
+  "numberOfItems": 1,
+  "subTotal": 75,
+  "tax": 75 * 0.15,
+  "isPaid": true,
+  "user": "6442b16e82baa13e52fc5fb3",
+  "transactionId": "6442b16e82baa13e52fc5fbc",
+  "paymentResult": "1682133233718",
+  "shippingAddress": {
+    "address": "Boulevard Maritimo 1187 Piso 5 B",
+    "city": "Mar del Plata",
+    "country": "Argentina",
+    "firstName": "Test",
+    "lastName": "test",
+    "phone": "+5493461452281",
+    "zip": "7600"
+  },
+  "orderItems": [
+    {
+      "_id": "64435b7c37963de2f9595f9a",
+      "image": "1740176-00-A_0_2000.jpg",
+      "inStock": 7,
+      "description": "Introducing the Tesla Chill Collection. The Men’s Chill Crew Neck Sweatshirt has a premium, heavyweight exterior and soft fleece interior for comfort in any season. The sweatshirt features a subtle thermoplastic polyurethane T logo on the chest and a Tesla wordmark below the back collar. Made from 60% cotton and 40% recycled polyester.",
+      "price": 75,
+      "quantity": 1,
+      "slug": "mens_chill_crew_neck_sweatshirt",
+      "title": "Men’s Chill Crew Neck Sweatshirt",
+      "size": "S",
+      "tags": [
+        "sweatshirt"
+      ],
+      "type": "shirts",
+      "gender": "men"
+    }
+  ]
 }
 
 

@@ -14,11 +14,10 @@ export const ordersServerRepository = (
 
   createOrder: async (order, userId: string) => {
 
-    const { orderItems, total } = order;
-
-    const productIds = orderItems.map(({ _id }) => _id);
-
     await db.connect();
+
+    const { orderItems, total } = order;
+    const productIds = orderItems.map(({ _id }) => _id);
 
     const dbProducts = await productModel.find({ _id: { $in: productIds } });
 
@@ -33,6 +32,7 @@ export const ordersServerRepository = (
     const taxRate = Number(config.taxRate);
     let backendTotal = subTotal * (taxRate + 1);
     backendTotal = Math.round(backendTotal * 100) / 100;
+
 
     if (total !== backendTotal)
       throw new Error('The total does not match the amount');
