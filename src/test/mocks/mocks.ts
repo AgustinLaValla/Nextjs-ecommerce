@@ -28,11 +28,100 @@ interface MockProduct {
 type ValidSizes = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 type ValidTypes = 'shirts' | 'pants' | 'hoodies' | 'hats';
 
+export interface MockOrder {
+
+  _id?: string;
+  user?: MockUser | string;
+  orderItems: MockOrderItem[];
+  shippingAddress: MockShippingAddress;
+  paymentResult?: string;
+
+  numberOfItems: number;
+  subTotal: number;
+  tax: number;
+  total: number;
+
+  isPaid: boolean;
+  paidAt?: string;
+
+  transactionId?: string;
+
+
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+
+export interface MockOrderItem {
+  _id: string;
+  title: string;
+  size: ValidSizes;
+  quantity: number;
+  slug: string;
+  image: string;
+  price: number;
+  gender: string;
+}
+
+
+export interface MockShippingAddress {
+  firstName: string;
+  lastName: string;
+  address: string;
+  address2?: string;
+  zip: string;
+  city: string;
+  country: string;
+  phone: string;
+}
+
 
 interface MockData {
   products: MockProduct[];
   users: MockUser[];
+  orders: MockOrder[];
 }
+
+const mockUser = {
+  _id: "6442b16e82baa13e52fc5fb3",
+  name: "Test",
+  email: "test@test.com",
+  role: "client",
+  createdAt: "2023-04-20T14:20:12.702Z",
+  updatedAt: "2023-04-20T14:20:12.702Z"
+};
+
+export const baseOrderMock: Omit<MockOrder, '_id' | 'createdAt' | 'updatedAt'> = {
+  total: 100,
+  numberOfItems: 1,
+  subTotal: 90,
+  tax: 10,
+  isPaid: true,
+  user: mockUser,
+  transactionId: new Types.ObjectId().toString(),
+  paymentResult: `${Date.now()}`,
+  shippingAddress: {
+    address: "Boulevard Maritimo 1187 Piso 5 B",
+    city: "Mar del Plata",
+    country: 'Argentina',
+    firstName: 'Test',
+    lastName: 'test',
+    phone: '+5493461452281',
+    zip: '7600'
+  },
+
+  orderItems: [{
+    _id: new Types.ObjectId().toString(),
+    gender: 'male',
+    image: "",
+    price: 90,
+    quantity: 1,
+    size: 'S',
+    slug: 'remera_herencia',
+    title: 'Remere Herencia Entallada'
+  }],
+}
+
 
 export const mockData: MockData = {
   products: [
@@ -96,14 +185,15 @@ export const mockData: MockData = {
     },
   ],
 
-  users: [
+  users: [mockUser],
+
+  orders: [
     {
-      _id: "6442b16e82baa13e52fc5fb3",
-      name: "Test",
-      email: "test@test.com",
-      role: "client",
+      ...baseOrderMock,
+      _id: new Types.ObjectId().toString(),
+      paidAt: "2023-04-20T14:20:12.702Z",
       createdAt: "2023-04-20T14:20:12.702Z",
-      updatedAt: "2023-04-20T14:20:12.702Z"
+      updatedAt: "2023-04-20T14:20:12.702Z",
     }
   ]
 }
