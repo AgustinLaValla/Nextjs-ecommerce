@@ -40,7 +40,23 @@ export const createProduct = async (req: NextApiRequest, res: NextApiResponse) =
   } catch (error) {
     if (error instanceof ErrorWidthCode)
       return res.status(error.code).json(error.message);
-
     return throw500Error(res);
   }
 };
+
+export const searchProductByTerm = async (req: NextApiRequest, res: NextApiResponse) => {
+  let { search = '' } = req.query as { search: string };
+
+  if (!search) return res.status(400).json({ message: 'Should specify search query' });
+
+  search = search.toLowerCase();
+
+  try {
+    const products = await productsService.getProductsByTerm(search);
+    return res.status(200).json(products);
+  } catch (error) {
+    if (error instanceof ErrorWidthCode)
+      return res.status(error.code).json(error.message);
+    return throw500Error(res);
+  }
+}
