@@ -9,4 +9,7 @@ export interface ProductsRepository {
   createProduct: (product: BaseProduct) => Promise<Product>
   createManyProducts: (products: BaseProduct[]) => Promise<Product[]>
   deleteManyProducts: () => Promise<void>
+  countProducts: () => Promise<number>
+  countProductsByStock: (stock: number) => Promise<number>
+  countProductsByStockLessThan: (stock: number) => Promise<number>
 }

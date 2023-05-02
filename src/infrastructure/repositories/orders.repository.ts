@@ -59,5 +59,19 @@ export const ordersServerRepository = (
     await db.disconnect();
 
     return orders;
+  },
+
+  countOrders: async () => {
+    await db.connect();
+    const qty = await orderModel.count();
+    await db.disconnect();
+    return qty;
+  },
+
+  counterPaidOrders: async () => {
+    await db.connect();
+    const qty = await orderModel.find({ isPaid: true }).count();
+    await db.disconnect();
+    return qty;
   }
 });

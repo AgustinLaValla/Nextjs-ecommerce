@@ -9,7 +9,10 @@ export const productsServerService = (productsRepository: ProductsRepository) =>
   getAllProducts: () => productsRepository.getAllProducts(),
   createProduct: (product: BaseProduct) => productsRepository.createProduct(product),
   createManyProducts: (products: BaseProduct[]) => productsRepository.createManyProducts(products),
-  deleteManyProducts: () => productsRepository.deleteManyProducts()
+  deleteManyProducts: () => productsRepository.deleteManyProducts(),
+  countProducts: () => productsRepository.countProducts(),
+  countProductsByStock: (stock: number) => productsRepository.countProductsByStock(stock),
+  countProductsByStockLessThan: (stock: number) => productsRepository.countProductsByStockLessThan(stock)
 });
 
 export const productsClientService = (productsRepository: Pick<ProductsRepository, 'getProductsByGender' | 'getProductBySlug'>) => ({

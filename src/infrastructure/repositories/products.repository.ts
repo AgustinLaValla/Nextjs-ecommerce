@@ -94,7 +94,7 @@ export const productsRepository = (productModel: Model<IProduct>): ProductsRepos
 
     await db.disconnect();
 
-    return newProduct; 
+    return newProduct;
   },
 
   createManyProducts: async (products: BaseProduct[]) => {
@@ -108,5 +108,26 @@ export const productsRepository = (productModel: Model<IProduct>): ProductsRepos
     await db.connect();
     await productModel.deleteMany();
     await db.connect();
+  },
+
+  countProducts: async () => {
+    await db.connect();
+    const qty = await productModel.count();
+    await db.disconnect();
+    return qty;
+  },
+
+  countProductsByStock: async (stock: number) => {
+    await db.connect();
+    const qty = await productModel.find({ inStock: stock }).count();
+    await db.disconnect();
+    return qty;
+  },
+
+  countProductsByStockLessThan: async () => {
+    await db.connect();
+    const qty = await productModel.find({ inStock: { $lte: 10 } }).count()
+    await db.disconnect();
+    return qty;
   }
 });

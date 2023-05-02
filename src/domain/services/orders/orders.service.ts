@@ -3,5 +3,7 @@ import { OrdersRepository } from "@/domain/services";
 
 export const ordersServeService = (ordersRepository: OrdersRepository) => ({
   createOrder: async (order: Order, userId: string) => ordersRepository.createOrder(order, userId),
-  getOrders: async () => ordersRepository.getOrders()
+  getOrders: async () => ordersRepository.getOrders(),
+  countOrders: async () => ordersRepository.countOrders(),
+  counterPaidOrders: async () => ordersRepository.counterPaidOrders(),
 });

@@ -27,5 +27,12 @@ export const userServerRepository = (userModel: Model<IUser>): UserRepository =>
     await db.disconnect();
 
     return mapToDomain(newUser);;
+  },
+
+  countClientUsers: async () => {
+    await db.connect();
+    const qty = await userModel.find({ role: 'client' }).count();
+    await db.disconnect();
+    return qty;
   }
 })
