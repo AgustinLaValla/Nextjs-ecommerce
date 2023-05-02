@@ -28,7 +28,7 @@ export const createOrder = async (req: NextApiRequest, res: NextApiResponse) => 
 }
 
 export const getOrders = async (req: NextApiRequest, res: NextApiResponse) => {
-  const session = await getSession({ req });
+  const session = await getToken({ req });
   if (!session) return res.status(400).json({ message: 'Must be authenticated' });
 
   try {
