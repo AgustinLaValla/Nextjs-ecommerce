@@ -19,21 +19,13 @@ const ordersService = ordersServeService(ordersServerRepository(Order, Product))
 const usersService = userService(userServerRepository(User));
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-  const [
-    numberOfOrders,
-    paidOrders,
-    numberOfClients,
-    numberOfProducts,
-    productsWithNoInventory,
-    lowInventory,
-  ] = await Promise.all([
-    ordersService.countOrders(),
-    ordersService.counterPaidOrders(),
-    usersService.countClientUsers(),
-    productsService.countProducts(),
-    productsService.countProductsByStock(0),
-    productsService.countProductsByStockLessThan(10)
-  ]);
+
+  const numberOfOrders = await ordersService.countOrders();
+  const paidOrders = await ordersService.counterPaidOrders();
+  const numberOfClients = await usersService.countClientUsers();
+  const numberOfProducts = await productsService.countProducts();
+  const productsWithNoInventory = await productsService.countProductsByStock(0);
+  const lowInventory = await productsService.countProductsByStockLessThan(10);
 
   res.status(200).json({
     numberOfOrders,
