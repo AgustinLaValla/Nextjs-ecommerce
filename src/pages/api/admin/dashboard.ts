@@ -6,12 +6,12 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
   numberOfOrders: number;
-  paidOrders: number; // isPad true
+  paidOrders: number;
   notPaidOrders: number;
-  numberOfClients: number; // role: client
+  numberOfClients: number;
   numberOfProducts: number;
-  productsWithNoInventory: number; // 0
-  lowInventory: number; // productos con 10 o menos
+  productsWithNoInventory: number;
+  lowInventory: number; 
 }
 
 const productsService = productsServerService(productsRepository(Product));
