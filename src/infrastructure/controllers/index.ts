@@ -1,2 +1,3 @@
-export { createProduct, getProductBySlug, getProductsByGender } from './products/products.controller';
-export { getOrders, createOrder } from './orders/orders.controller';
+export * from './products/products.controller';
+export * from './orders/orders.controller';
+export * from './upload.controller'

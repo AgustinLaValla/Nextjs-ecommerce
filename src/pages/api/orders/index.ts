@@ -1,10 +1,10 @@
-import { createOrder, getOrders } from "@/infrastructure/controllers";
+import { createOrder } from "@/infrastructure/controllers";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   const responses = {
-    'GET': () => getOrders(req, res),
+    // 'GET': () => getOrders(req, res),
     'POST': () => createOrder(req, res)
   };
 

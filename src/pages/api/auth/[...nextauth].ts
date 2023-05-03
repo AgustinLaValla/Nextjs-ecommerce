@@ -1,4 +1,4 @@
-import { userServerRepository } from "@/infrastructure/repositories/user.repositoy";
+import { userServerRepository } from "@/infrastructure/repositories";
 import NextAuth from "next-auth/next";
 import GoogleProvider from 'next-auth/providers/google';
 import { config } from "@/config/config";
