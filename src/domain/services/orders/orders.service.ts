@@ -7,3 +7,7 @@ export const ordersServeService = (ordersRepository: OrdersRepository) => ({
   countOrders: async () => ordersRepository.countOrders(),
   counterPaidOrders: async () => ordersRepository.counterPaidOrders(),
 });
+
+export const ordersClientService = (ordersRepository: Pick<OrdersRepository, 'createOrder'>) => ({
+  createOrder: (order: Order) => ordersRepository.createOrder(order)
+})

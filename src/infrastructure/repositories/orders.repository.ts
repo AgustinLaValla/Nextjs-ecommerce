@@ -1,9 +1,11 @@
 import { Model } from "mongoose";
-import { IOrder, IProduct } from '@/infrastructure/database/schemas';
+import { ErrorWidthCode, Order } from "@/domain/models";
 import { OrdersRepository } from "@/domain/services";
-import { db } from "@/infrastructure/database";
-import { ErrorWidthCode } from "@/domain/models";
 import { config } from "@/config/config";
+import { IOrder, IProduct } from '@/infrastructure/database/schemas';
+import { db } from "@/infrastructure/database";
+import { http } from '@/infrastructure/adapters';
+import { baseApi } from "../api";
 
 export const ordersServerRepository = (
 
@@ -12,7 +14,9 @@ export const ordersServerRepository = (
 
 ): OrdersRepository => ({
 
-  createOrder: async (order, userId: string) => {
+  createOrder: async (order, userId?: string) => {
+
+    if (!userId) throw new ErrorWidthCode(400, 'User ID should be provided')
 
     await db.connect();
 
@@ -75,3 +79,9 @@ export const ordersServerRepository = (
     return qty;
   }
 });
+
+type OrdersClientRepository = Pick<OrdersRepository, 'createOrder'>
+
+export const ordersClientRepository: OrdersClientRepository = {
+  createOrder: (body: Order) => http.post(baseApi, '/orders', body)
+}

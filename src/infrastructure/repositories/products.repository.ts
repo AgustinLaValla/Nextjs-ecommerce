@@ -6,6 +6,7 @@ import { ProductsRepository } from '@/domain/services';
 import { config } from '@/config/config';
 import { BaseProduct, ErrorWidthCode, Product } from '@/domain/models';
 import { v2 as cloudinary } from 'cloudinary';
+import fs from 'fs';
 
 cloudinary.config(process.env.CLOUDINARY_URL || '');
 

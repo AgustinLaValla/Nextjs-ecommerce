@@ -1,10 +1,10 @@
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
 import { SWRConfig } from 'swr';
-import { ThemeProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import { lightTheme } from '@/presentation/themes';
 import '@/styles/globals.css';
-import { AuthProvider } from '@/presentation/context';
+import { AuthProvider, CartProvider, UiProvider } from '@/presentation/context';
 
 export default function App({ Component, pageProps: { sesion, ...props } }: AppProps) {
   return (
@@ -14,9 +14,14 @@ export default function App({ Component, pageProps: { sesion, ...props } }: AppP
           fetcher: (resouce, init) => fetch(resouce, init).then(resp => resp.json())
         }}>
         <AuthProvider>
-          <ThemeProvider theme={lightTheme}>
-            <Component {...props} />
-          </ThemeProvider>
+          <CartProvider>
+            <UiProvider>
+              <ThemeProvider theme={lightTheme}>
+                <CssBaseline />
+                <Component {...props} />
+              </ThemeProvider>
+            </UiProvider>
+          </CartProvider>
 
         </AuthProvider>
       </SWRConfig>
